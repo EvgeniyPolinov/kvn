@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'minin/css/resets.css' %}">
+	<link rel="stylesheet" href="{% static 'minin/css/normalizes.css' %}">
+    <link rel="stylesheet" href="{% static 'minin/css/style.css' %}">
+    <meta name="description" content="КВН Мининский">
+
+    <link  rel= "apple-touch-icon" size  = "57x57"  href= "{% static 'minin/icons/fav-icons/apple-icon-57x57.png' %}" >
+    <link  rel= "apple-touch-icon"  size= "60x60"  href= "{% static 'minin/icons/fav-icons/apple-icon-60x60.png' %}" >
+    <link  rel= "apple-touch-icon" size  = "72x72"  href= "{% static 'minin/icons/fav-icons/android-icon-72x72.png' %}" >
+    <link  rel= "apple-touch-icon"  size= "76x76"  href= "{% static 'minin/icons/fav-icons/apple-icon-76x76.png' %}" >
+    <link  rel= "apple-touch-icon"  размеры = "114x114"  href = "{% static 'minin/icons/fav-icons/apple-icon-114x114.png' %}">
+    <link  rel= "apple-touch-icon" size  = "120x120 "  href= "{% static 'minin/icons/fav-icons/apple-icon-120x120.png' %}" >
+    <link  rel= "apple-touch-icon" size  = "144x144"  href= "{% static 'minin/icons/fav-icons/ apple-icon-144x144.png' %}" >
+    <link  rel= "apple-touch-icon"  размеры = "152x152"  href= "{% static 'minin/icons/fav-icons/apple-icon-152x152.png' %}" >
+    <link  rel= "apple-touch-icon"  размеры = "180x180"  href= "{% static 'minin/icons/fav-icons/apple-icon-180x180.png' %}" >
+    <link  rel= "icon"  type= "image/png " size  = "192x192"  href= "{% static 'minin/icons/fav-icons/android-icon-192x192.png' %}" >
+    <link  rel= "icon"  type= "image/png" size  = "32x32"  href= "{% static 'minin/icons/fav-icons/favicon-32x32.png' %}" >
+    <link  rel= "icon"  тип= "изображение/png"  размеры= "96x96"  href= "{% static 'minin/icons/fav-icons/favicon-96x96.png' %}" >
+    <link  rel= "значок"  тип= "изображение/png"  размеры= "16x16"  href= "{% static 'minin/icons/fav-icons/favicon-16x16. png' %}" >
+    <link  отн = "манифест" href= "{% static 'minin/icons/fav-icons/manifest.json' %}" >
+    <meta -  имя="msapplication-TileColor"  content= "#ffffff" >
+    <meta  name= "msapplication-TileImage"  content= "{% static 'minin/icons/fav-icons/ms-icon-144x144.png' %}" >
+    <meta  name= "theme-color"  content= "#ffffff" >
+
+    <title>КВН Мининский</title>
+</head>
+<body>
+    <div class="main-section">
+        <div class="conteiner main-section">
+            <div class="navigation">
+                <input type="checkbox" class="navigation__toggle" id='navin-toggle'>
+                <label for='navin-toggle' class='navigation__button'><span class='navigation__icon'></span></label>
+                <div class="navigation__background"></div>
+                <nav class='navigation__nav'>
+                   <ul class="navigation__list">
+{% if request.user.is_authenticated %}
+                    {% for m in menu2 %}
+                      <li class="navigation__item"><a href="{% url m.url_name %}" class="navigation__link">{{m.title}}</a></li>
+{% endfor %}
+                       <div class="last-name"> <p>Вы вошли как:&nbsp</p>{{user.username}}</div>
+{% else %}
+{% for m in menu %}
+                      <li class="navigation__item"><a href="{% url m.url_name %}" class="navigation__link">{{m.title}}</a></li>
+{% endfor %}
+{% endif %}
+
+                   </ul>
+                </nav>
+              </div>
+            <div class="main-section__header header">
+                <div class='card'>
+                    <div class='front'><img src="{% static 'minin/icons/image 2 (1).svg' %}" alt="logotip"></div>
+                    <div class='back'><img src="{% static 'minin/icons/image 7 (1).png' %}" alt="logotip"></div>
+                </div>
+                <div class="header__title"><h1>Кубок ректора Мининского университета</h1></div>
+            </div>
+
+            <div class="main-section__content-conteiner content-conteiner">
+                {% block kk %}
+                <div class="content-conteiner__left-wrapper left-wrapper">
+                    {% block categorii %}
+                    <div class="categoriii">Категории</div>
+{% for c in cats %}
+    {% if c.pk == cat_selected %}
+                    <div class="categorii">{{c.name}}</div>
+                    {% else %}
+                    <div class="categorii"><a href="{{ c.get_absolute_url }}">{{c.name}}</a></div>
+    {% endif %}
+{% endfor %}
+                    {% endblock %}
+                    <!-- Сюда пойдут категории -->
+                </div>
+
+                <div class="content-conteiner__right-wrapper right-wrapper">
+                    {% endblock %}
+{% block content %}
+{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

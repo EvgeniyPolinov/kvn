@@ -1,0 +1,18 @@
+{% extends 'minin/base.html' %}
+
+{% block categorii %}
+.
+{% endblock %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}<br>
+    <div class="otenki"><p>Первая оценка</p><div>{{ form.first_evaluation }}</div></div><br>
+    <div class="otenki"><p>Вторая оценка</p><div>{{ form.second_appreciation }}</div></div><br>
+    <div class="otenki"><p>Третья оценка</p><div>{{ form.third_assessment }}</div></div><br>
+    <div class="otenki"><p>Четвертая оценка</p><div>{{ form.fourth_assessment }}</div></div><br>
+    <div class="otenki"><p>Пятая оценка</p><div>{{ form.fifth_assessment }}</div></div><br>
+
+    <button class='form-button' type="submit"><p>Выставить оценку</p></button>
+</form>
+{% endblock %}

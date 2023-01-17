@@ -1,0 +1,49 @@
+{% extends 'minin/base.html' %}
+{% block kk %}
+/
+{% endblock %}
+{% block content %}
+    <div class="turnir-post">
+
+    <div class="turnirpost">
+        <div class="cardd">
+            {% for i in itog1 %}
+  <p class="itogballcom">{{i.title}}</p>
+            {% if i.photo %}
+                <img class="imgitog" src="{{i.photo.url}}">
+                {% endif %}
+            <p class="itogballcomm">{{i.final_score}}</p>
+{% endfor %}
+</div>
+    </div>
+
+
+    <div class="turnirpost2">
+        <div class="cardd2">
+{% for i in itog2 %}
+  <p class="itogballcom">{{i.title}}</p>
+
+            {% if i.photo %}
+                <img class='imgitog' src="{{i.photo.url}}">
+                {% endif %}
+            <p class="itogballcomm">{{i.final_score}}</p>
+{% endfor %}
+</div>
+    </div>
+
+
+    <div class="turnirpost23">
+        <div class="cardd23">
+{% for i in itog3 %}
+  <p class="itogballcom">{{i.title}}</p>
+
+            {% if i.photo %}
+                <img class='imgitog' src="{{i.photo.url}}">
+                {% endif %}
+            <p class="itogballcomm">{{i.final_score}}</p>
+{% endfor %}
+</div>
+</div>
+
+</div>
+{% endblock %}

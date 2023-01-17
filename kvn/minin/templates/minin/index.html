@@ -1,0 +1,40 @@
+{% extends 'minin/base.html' %}
+
+{% block content %}
+{% for i in posts %}
+<div class="main-section__conteiner-post conteiner-post">
+      <div class="conteiner-post__title-post title-post">
+        <p>Команда:&nbsp {{i.title}}</p>
+        <p>Категория:&nbsp {{i.cat}}</p>
+      </div>
+      <div class="conteiner-post__content-post content-post">
+        {% if i.photo %}
+        <div class="content-post__img-post">
+          <img src="{{i.photo.url}}">
+        </div>
+        {% endif %}
+        <div class="content-post__judging-post judging-post">
+          <div class="judging-post__judj judj">
+            {% for j in judjs %}
+            <div class="judj__img-elipce img-elipce">
+              <div class='frontt'><span>
+                {% if j.photo %}
+                <img src="{{j.photo.url}}">
+                {% endif %}
+              </span></div>
+              <div class='backk'><span>{{j.first_name}}</span></div>
+            </div>
+            {% endfor %}
+          </div>
+          <div class="judging-post__bully bully">
+            <div class="bully__item-bul">{{i.first_evaluation}}</div>
+            <div class="bully__item-bul">{{i.second_appreciation}}</div>
+            <div class="bully__item-bul">{{i.third_assessment}}</div>
+            <div class="bully__item-bul">{{i.fourth_assessment}}</div>
+            <div class="bully__item-bul">{{i.fifth_assessment}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endfor %}
+{% endblock %}
